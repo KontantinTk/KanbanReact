@@ -9,10 +9,26 @@ const addTask = (data) => {
         type: types.ADD_TASK,
         row: data.row,
         column: data.column,
-        id: data.id,
+        task: data.task,
         title: data.title,
         text: data.text
     }
 }
 
-export { types, addTask };
+const moveTask = (data) => {
+    return {
+        type: types.MOVE_TASK,
+        task: data.task,
+        column: data.column,
+        index: data.index
+    }
+}
+
+const delTask = (data) => {
+    return {
+        type: types.DEL_TASK,
+        task: data.task,
+    }
+}
+
+export { types, addTask, moveTask, delTask };

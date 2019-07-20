@@ -5,7 +5,9 @@ import styled from "styled-components";
 
 import { connect } from "react-redux";
 
-import { addTask } from '../redux/actions/crudActions';
+import { addTask, moveTask, delTask } from '../redux/actions/crudActions';
+
+import shortid from 'shortid';
 
 const ColumnWrapper = styled.div`
   overflow-x: hidden;
@@ -19,12 +21,25 @@ class Column extends React.Component {
 
   addTestTask = () => {
     this.props.dispatch(addTask({
-      id: 2,
-      row: 0,
-      column: 2,
+      task: 'task_'+shortid.generate(),
+      row: 'row_0',
+      column: 'column_2',
       title: 'Test task',
       text: 'Test text'
     }));
+  }
+
+  moveTestTask = () => {
+    this.props.dispatch(moveTask({
+      task: 'task_1',
+      column: 'column_2'
+    }));
+  }
+
+  delTestTask = () => {
+    this.props.dispatch(delTask({
+      task: 'task_1'
+    }))
   }
 
   render() {
@@ -34,6 +49,8 @@ class Column extends React.Component {
           return (
             <ColumnWrapper ref={provided.innerRef} {...provided.droppableProps}>
               <button onClick={this.addTestTask}>Add task</button>
+              <button onClick={this.moveTestTask}>Move task</button>
+              <button onClick={this.delTestTask}>Del task</button>
               {this.props.columns[this.props.column_id].tasksOrder.map((taskId, index) => {
                 return (
                   <Task key={taskId} task_id={taskId} index={index} />

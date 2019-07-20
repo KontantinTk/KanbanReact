@@ -43,7 +43,7 @@ const rootReducer = (state = defaultState, action) => {
             let new_task_order = state.columns[column].tasksOrder;
 
             if (old_column == column) {
-                let new_task_order = new_task_order.filter(
+                new_task_order = new_task_order.filter(
                     task => task !== action.task
                 );
                 new_task_order.splice(action.index, 0, action.task);

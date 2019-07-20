@@ -4,14 +4,14 @@ const types = {
     MOVE_TASK: 'MOVE_TASK'
 }
 
-const addTask = (task) => {
+const addTask = (data) => {
     return {
         type: types.ADD_TASK,
-        row: task.row,
-        col: task.col,
-        index: task.index,
-        title: task.title,
-        text: task.text
+        row: data.row,
+        column: data.column,
+        id: data.id,
+        title: data.title,
+        text: data.text
     }
 }
 

@@ -18,23 +18,12 @@ const TaskTitle = styled.div`
   margin-bottom: 10px;
 `;
 
-const Avatar = styled.img`
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  width: 30px;
-  height: 30px;
-  border-radius: 5px;
-`;
-
 const TaskText = styled.div``;
 
 class Task extends React.Component {
   render() {
-    const task = this.props.task;
-    const index = this.props.index;
     return (
-      <Draggable key={task.id} draggableId={task.id} index={index}>
+      <Draggable key={this.props.task_id} draggableId={this.props.task_id} index={this.props.index}>
         {provided => {
           return (
             <React.Fragment>
@@ -43,9 +32,8 @@ class Task extends React.Component {
                 {...provided.draggableProps}
                 {...provided.dragHandleProps}
               >
-                <TaskTitle>{task.title}</TaskTitle>
-                <TaskText>{task.description}</TaskText>
-                <Avatar src={task.imgSrc} />
+                <TaskTitle>{this.props.tasks[this.props.task_id].title}</TaskTitle>
+                <TaskText>{this.props.tasks[this.props.task_id].text}</TaskText>
               </TaskWrapper>
               {provided.placeholder}
             </React.Fragment>
@@ -56,4 +44,6 @@ class Task extends React.Component {
   }
 }
 
-export default Task;
+const mapStoreToProps = (state) => (state);
+
+export default connect(mapStoreToProps)(Task);

@@ -1,42 +1,28 @@
-import testDataChance from '../../data/testData';
+import newData from '../../data/newData';
 import { types } from '../actions/crudActions';
 
-const defaultState = testDataChance;
+const defaultState = newData;
 
 const rootReducer = (state = defaultState, action) => {
-
-    const col_id = 'col_'+action.col;
-    const row_id = 'row_'+action.row;
-    const task_id = 'task_'+action.index;
-
+    console.log(action);
     switch (action.type) {
         case types.ADD_TASK:
             return {
                 ...state,
-                rows:{
-                    ...state.rows,
-                    [row_id]: {
-                        ...state.rows[row_id],
-                        columns:{
-                            ...state.rows[row_id].columns,
-                            [col_id]: {
-                                ...state.rows[row_id].columns[col_id],
-                                tasks:{
-                                    ...state.rows[row_id].columns[col_id].tasks,
-                                    [task_id]:{
-                                        id: task_id,
-                                        title: action.title,
-                                        description: action.text
-                                    },
-                                    // 'task_0': undefined
-                                },
-                                tasksOrder:[
-                                    task_id,
-                                    ...state.rows[row_id].columns[col_id].tasksOrder
-                                    // ...state.rows[row_id].columns[col_id].tasksOrder.filter(del_task_id => del_task_id !== 'task_0'),
-                                ]
-                            }
-                        }
+                tasks: {
+                    ...state.tasks,
+                    ['task_'+action.id]: {
+                        title: action.title,
+                        text: action.text
+                    }
+                },
+                columns: {
+                    ...state.columns,
+                    ['column_'+action.column]: {
+                        tasksOrder: [
+                            'task_'+action.id,
+                            ...state.columns['column_'+action.column].tasksOrder
+                        ]
                     }
                 }
             }

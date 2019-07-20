@@ -15,49 +15,28 @@ const ColumnWrapper = styled.div`
   border: 1px solid black;
 `;
 
-const AddTaskButton = styled.button`
-  width: 100%;
-  background: lime;
-  border: none;
-  font-size: 14px;
-  font-weight: 700;
-  border-radius: 5px;
-`;
-
 class Column extends React.Component {
 
-  // addTask = () => {
-  //   const taskData = {
-  //     row: 0,
-  //     col: 0,
-  //     index: 123,
-  //     title: "Test task",
-  //     text: "some text"
-  //   }
-
-  //   this.props.dispatch(addTask(taskData));
-  //   this.forceUpdate();
-  // }
+  addTestTask = () => {
+    this.props.dispatch(addTask({
+      id: 2,
+      row: 0,
+      column: 2,
+      title: 'Test task',
+      text: 'Test text'
+    }));
+  }
 
   render() {
-    const col = this.props.column;
     return (
-      <Droppable droppableId={col.id}>
+      <Droppable droppableId={this.props.column_id}>
         {provided => {
           return (
             <ColumnWrapper ref={provided.innerRef} {...provided.droppableProps}>
-              <AddTaskButton onClick={() => {
-                this.props.addTask({
-                  row: 0,
-                  col: 0,
-                  index: 123,
-                  title: "Test task",
-                  text: "some text"
-                });
-              }}>+ task</AddTaskButton>
-              {col.tasksOrder.map((taskId, index) => {
+              <button onClick={this.addTestTask}>Add task</button>
+              {this.props.columns[this.props.column_id].tasksOrder.map((taskId, index) => {
                 return (
-                  <Task task={col.tasks[taskId]} key={taskId} index={index} />
+                  <Task key={taskId} task_id={taskId} index={index} />
                 );
               })}
               {provided.placeholder}
@@ -69,8 +48,6 @@ class Column extends React.Component {
   }
 }
 
-const mapDispatchToProps = {
-  addTask
-}
+const mapStoreToProps = (state) => (state);
 
-export default connect(null, mapDispatchToProps)(Column);
+export default connect(mapStoreToProps)(Column);

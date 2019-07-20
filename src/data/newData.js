@@ -1,7 +1,7 @@
 const newData = {
     rows: {
         'row_0':{
-            columnsOrder: ['column_0', 'column_1']
+            columnsOrder: ['column_0', 'column_1', 'column_2']
         }
     },
     columns: {
@@ -10,6 +10,9 @@ const newData = {
         },
         'column_1': {
             tasksOrder: ['task_1']
+        },
+        'column_2': {
+            tasksOrder: []
         }
     },
     tasks: {
@@ -17,7 +20,7 @@ const newData = {
             title: 'Task 1',
             text: 'Text 1'
         },
-        tasks_1: {
+        task_1: {
             title: 'Task 2',
             text: 'Text 2'
         },

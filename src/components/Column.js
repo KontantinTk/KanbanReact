@@ -9,19 +9,30 @@ import { addTask, moveTask, delTask } from '../redux/actions/crudActions';
 
 import shortid from 'shortid';
 
-const ColumnWrapper = styled.div`
+const ColumnDroppableArea = styled.div`
   overflow-x: hidden;
-  overflow-y: scroll;
+  // overflow-y: auto;
+  height: 100%;
+  border-bottom: 3px solid lightblue;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+`;
+
+const ColumnWrapper = styled.div`
   width: 100%;
   height: 100%;
-  border: 1px solid black;
+`;
+
+const ColumnButtonsWrapper = styled.div`
+  width: 100%;
 `;
 
 class Column extends React.Component {
 
   addTestTask = () => {
     this.props.dispatch(addTask({
-      task: 'task_'+shortid.generate(),
+      task: 'task_' + shortid.generate(),
       row: 'row_0',
       column: 'column_2',
       title: 'Test task',
@@ -47,20 +58,27 @@ class Column extends React.Component {
       <Droppable droppableId={this.props.column_id}>
         {provided => {
           return (
-            <ColumnWrapper ref={provided.innerRef} {...provided.droppableProps}>
-              <button onClick={this.addTestTask}>Add task</button>
-              <button onClick={this.moveTestTask}>Move task</button>
-              <button onClick={this.delTestTask}>Del task</button>
-              {this.props.columns[this.props.column_id].tasksOrder.map((taskId, index) => {
-                return (
-                  <Task key={taskId} task_id={taskId} index={index} />
-                );
-              })}
-              {provided.placeholder}
+            <ColumnWrapper>
+              <ColumnButtonsWrapper>
+              
+                  <button onClick={this.addTestTask}>Add task</button>
+                  <button onClick={this.moveTestTask}>Move task</button>
+                  <button onClick={this.delTestTask}>Del task</button>
+         
+              </ColumnButtonsWrapper>
+              <ColumnDroppableArea ref={provided.innerRef} {...provided.droppableProps}>
+                {this.props.columns[this.props.column_id].tasksOrder.map((taskId, index) => {
+                  return (
+                    <Task key={taskId} task_id={taskId} index={index} />
+                  );
+                })}
+                {provided.placeholder}
+              </ColumnDroppableArea>
             </ColumnWrapper>
           );
-        }}
-      </Droppable>
+        }
+        }
+      </Droppable >
     );
   }
 }

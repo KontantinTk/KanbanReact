@@ -87,6 +87,9 @@ const rootReducer = (state = defaultState, action) => {
                 }
             }
         case types.DEL_TASK:
+
+            if (!state.tasks[task]) return state;
+
             task = action.task;
             column = state.tasks[task].column;
 

@@ -1,11 +1,8 @@
 const newData = {
     rows: {
         'row_0':{
-            columnsOrder: ['column_0', 'column_1', 'column_2']
+            columnsOrder: ['column_0', 'column_1', 'column_2', 'column_4']
         },
-        'row_1':{
-            columnsOrder: ['column_3']
-        }
     },
     columns: {
         'column_0': {
@@ -20,8 +17,8 @@ const newData = {
             row: 'row_0',
             tasksOrder: []
         },
-        'column_3': {
-            row: 'row_1',
+        'column_4': {
+            row: 'row_0',
             tasksOrder: []
         }
     },
@@ -37,7 +34,7 @@ const newData = {
             text: 'Text 2'
         },
     },
-    rowsOrder: ['row_0', 'row_1']
+    rowsOrder: ['row_0']
 }
 
 export default newData;

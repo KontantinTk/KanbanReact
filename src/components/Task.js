@@ -4,12 +4,13 @@ import styled from "styled-components";
 import { connect } from 'react-redux';
 
 const TaskWrapper = styled.div`
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
-  background: white;
-  min-height: 80px;
+  margin: 3px 0 0 3px;
   position: relative;
+  min-width: 150px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  background: lightblue;
+  padding: 10px;
 `;
 
 const TaskTitle = styled.div`

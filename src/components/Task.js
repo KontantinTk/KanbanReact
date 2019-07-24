@@ -3,6 +3,8 @@ import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import { connect } from 'react-redux';
 
+import {delTask} from '../redux/actions/crudActions';
+
 const TaskWrapper = styled.div`
   margin: 3px 0 0 3px;
   position: relative;
@@ -22,6 +24,11 @@ const TaskTitle = styled.div`
 const TaskText = styled.div``;
 
 class Task extends React.Component {
+
+  delTask = () => {
+    this.props.dispatch(delTask({task:this.props.task_id}))
+  }
+
   render() {
     return (
       <Draggable key={this.props.task_id} draggableId={this.props.task_id} index={this.props.index}>
@@ -35,6 +42,7 @@ class Task extends React.Component {
               >
                 <TaskTitle>{this.props.tasks[this.props.task_id].title}</TaskTitle>
                 <TaskText>{this.props.tasks[this.props.task_id].text}</TaskText>
+                <button onClick={this.delTask}>Delete task</button>
               </TaskWrapper>
               {provided.placeholder}
             </React.Fragment>

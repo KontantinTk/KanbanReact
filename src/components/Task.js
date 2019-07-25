@@ -6,12 +6,12 @@ import { connect } from 'react-redux';
 import {delTask} from '../redux/actions/crudActions';
 
 const TaskWrapper = styled.div`
-  margin: 3px 0 0 3px;
+  margin: 3px;
   position: relative;
   min-width: 150px;
   border: 1px solid gray;
   border-radius: 5px;
-  background: lightblue;
+  background: white;
   padding: 10px;
 `;
 
@@ -26,7 +26,7 @@ const TaskText = styled.div``;
 class Task extends React.Component {
 
   delTask = () => {
-    this.props.dispatch(delTask({task:this.props.task_id}))
+    this.props.delTask({task:this.props.task_id})
   }
 
   render() {
@@ -55,4 +55,8 @@ class Task extends React.Component {
 
 const mapStoreToProps = (state) => (state);
 
-export default connect(mapStoreToProps)(Task);
+const mapDispatchToProps = {
+  delTask
+}
+
+export default connect(mapStoreToProps, mapDispatchToProps)(Task);

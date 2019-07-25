@@ -5,15 +5,14 @@ import styled from "styled-components";
 
 import { connect } from "react-redux";
 
-import { addTask, moveTask, delTask } from '../redux/actions/crudActions';
+import { addTask } from '../redux/actions/crudActions';
 
 import shortid from 'shortid';
 
 const ColumnDroppableArea = styled.div`
   overflow-x: hidden;
-  // overflow-y: auto;
+  overflow-y: visible;
   height: 100%;
-  border-bottom: 3px solid lightblue;
   display: flex;
   flex-direction: column;
   align-content: flex-start;
@@ -24,34 +23,17 @@ const ColumnWrapper = styled.div`
   height: 100%;
 `;
 
-const ColumnButtonsWrapper = styled.div`
-  width: 100%;
-`;
-
 class Column extends React.Component {
 
-  addTestTask = () => {
-    this.props.dispatch(addTask({
+  addTask = () => {
+    this.props.addTask({
       task: 'task_' + shortid.generate(),
-      row: 'row_0',
-      column: 'column_2',
+      column: this.props.column_id,
       title: 'Test task',
       text: 'Test text'
-    }));
+    });
   }
 
-  moveTestTask = () => {
-    this.props.dispatch(moveTask({
-      task: 'task_1',
-      column: 'column_2'
-    }));
-  }
-
-  delTestTask = () => {
-    this.props.dispatch(delTask({
-      task: 'task_1'
-    }))
-  }
 
   render() {
     return (
@@ -59,13 +41,7 @@ class Column extends React.Component {
         {provided => {
           return (
             <ColumnWrapper>
-              <ColumnButtonsWrapper>
-              
-                  <button onClick={this.addTestTask}>Add task</button>
-                  <button onClick={this.moveTestTask}>Move task</button>
-                  <button onClick={this.delTestTask}>Del task</button>
-         
-              </ColumnButtonsWrapper>
+                <button onClick={this.addTask}>Add task</button>
               <ColumnDroppableArea ref={provided.innerRef} {...provided.droppableProps}>
                 {this.props.columns[this.props.column_id].tasksOrder.map((taskId, index) => {
                   return (
@@ -76,8 +52,7 @@ class Column extends React.Component {
               </ColumnDroppableArea>
             </ColumnWrapper>
           );
-        }
-        }
+        }}
       </Droppable >
     );
   }
@@ -85,4 +60,8 @@ class Column extends React.Component {
 
 const mapStoreToProps = (state) => (state);
 
-export default connect(mapStoreToProps)(Column);
+const mapDispatchToProps = {
+  addTask
+}
+
+export default connect(mapStoreToProps, mapDispatchToProps)(Column);

@@ -1,5 +1,5 @@
 import newData from '../../data/newData';
-import { types } from '../actions/crudActions';
+import { ActionTypes } from '../actions/crudActions';
 
 const defaultState = newData;
 
@@ -8,7 +8,7 @@ const rootReducer = (state = defaultState, action) => {
     let task = undefined;
 
     switch (action.type) {
-        case types.ADD_TASK:
+        case ActionTypes.ADD_TASK:
 
             if (state.tasks[action.task]) return state;
 
@@ -33,7 +33,7 @@ const rootReducer = (state = defaultState, action) => {
                 }
             }
 
-        case types.MOVE_TASK:
+        case ActionTypes.MOVE_TASK:
 
             if (!state.tasks[action.task]) return state;
 
@@ -42,7 +42,7 @@ const rootReducer = (state = defaultState, action) => {
 
             let new_task_order = state.columns[column].tasksOrder;
 
-            if (old_column == column) {
+            if (old_column === column) {
                 new_task_order = new_task_order.filter(
                     task => task !== action.task
                 );
@@ -86,7 +86,7 @@ const rootReducer = (state = defaultState, action) => {
                     }
                 }
             }
-        case types.DEL_TASK:
+        case ActionTypes.DEL_TASK:
 
             if (!state.tasks[action.task]) return state;
 

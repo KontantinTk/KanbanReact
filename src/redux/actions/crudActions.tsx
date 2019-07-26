@@ -51,4 +51,5 @@ const delTask = (data: DelTaskData): DelTaskData & Action => {
     }
 }
 
-export { ActionTypes, addTask, moveTask, delTask };
+export { ActionTypes };
+export { addTask, moveTask, delTask };

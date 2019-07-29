@@ -9,6 +9,8 @@ import { addTask } from '../redux/actions/crudActions';
 
 import shortid from 'shortid';
 
+import TaskAddForm from './TaskAddForm';
+
 const ColumnDroppableArea = styled.div`
   overflow-x: hidden;
   overflow-y: visible;
@@ -34,14 +36,13 @@ class Column extends React.Component {
     });
   }
 
-
   render() {
     return (
       <Droppable droppableId={this.props.column_id}>
         {provided => {
           return (
             <ColumnWrapper>
-                <button onClick={this.addTask}>Add task</button>
+                <TaskAddForm column_id={this.props.column_id}></TaskAddForm>
               <ColumnDroppableArea ref={provided.innerRef} {...provided.droppableProps}>
                 {this.props.columns[this.props.column_id].tasksOrder.map((taskId, index) => {
                   return (

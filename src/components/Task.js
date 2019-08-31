@@ -5,23 +5,41 @@ import { connect } from 'react-redux';
 
 import {delTask} from '../redux/actions/crudActions';
 
+
+
 const TaskWrapper = styled.div`
-  margin: 3px;
   position: relative;
+
+  margin: 3px 10px 10px 3px;
   min-width: 150px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  background: white;
   padding: 10px;
+
+  background: ${(props) => props.color};
+  box-shadow: 5px 5px 5px -4px lightgrey;
 `;
 
 const TaskTitle = styled.div`
+  font: 18px sans-serif;
   font-weight: bold;
-  font-size: 20px;
   margin-bottom: 10px;
 `;
 
-const TaskText = styled.div``;
+const TaskText = styled.div`
+  font: 14px sans-serif;
+  margin: 10px 0 10px 0;
+`;
+
+const DelTask = styled.button`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #F09072;
+  border: none;
+  border-radius: 5px;
+`;
+
+const TaskButtons = styled.div`
+`;
 
 class Task extends React.Component {
 
@@ -39,10 +57,11 @@ class Task extends React.Component {
                 ref={provided.innerRef}
                 {...provided.draggableProps}
                 {...provided.dragHandleProps}
+                color={this.props.tasks[this.props.task_id].color}
               >
                 <TaskTitle>{this.props.tasks[this.props.task_id].title}</TaskTitle>
+                <DelTask onClick={this.delTask}>del</DelTask>
                 <TaskText>{this.props.tasks[this.props.task_id].text}</TaskText>
-                <button onClick={this.delTask}>Delete task</button>
               </TaskWrapper>
               {provided.placeholder}
             </React.Fragment>

@@ -6,6 +6,25 @@ let rowIndex = 0;
 let columnIndex = 0;
 let taskIndex = 0;
 
+const taskColors = [
+  // yellowish: 
+  '#FFED70', 
+  // redish: 
+  '#F09072', 
+  // pupleish: 
+  '#CF96FF', 
+  // blueish: 
+  '#7DDBE8', 
+  // greenish: 
+  '#BEFF8A'
+];
+
+const getRandomColor = () => {
+  const randomIndex = Math.round(Math.random() * taskColors.length);
+  console.log(randomIndex);
+  return taskColors[randomIndex];
+}
+
 const testDataChance = {
   title: "Kanban"
 };
@@ -32,7 +51,8 @@ for (let i = 0; i < 1; i++) {
         id: taskId,
         title: chance.sentence({ words: 2 }),
         description: chance.sentence({ words: 10 }),
-        imgSrc: "https://cs5-1.4pda.to/15791254.png"
+        imgSrc: "https://cs5-1.4pda.to/15791254.png",
+        color: getRandomColor()
       };
       tasksOrder.push(taskId);
 

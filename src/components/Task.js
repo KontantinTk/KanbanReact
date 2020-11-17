@@ -16,6 +16,8 @@ const TaskWrapper = styled.div`
 
   background: ${(props) => props.color};
   box-shadow: 5px 5px 5px -4px lightgrey;
+  
+  border-radius: 10px;
 `;
 
 const TaskTitle = styled.div`

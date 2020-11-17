@@ -12,7 +12,6 @@ import shortid from 'shortid';
 import TaskAddForm from './TaskAddForm';
 
 const ColumnDroppableArea = styled.div`
-  overflow-x: hidden;
   overflow-y: visible;
   height: 100%;
   display: flex;
@@ -23,6 +22,7 @@ const ColumnDroppableArea = styled.div`
 const ColumnWrapper = styled.div`
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
 `;
 
 class Column extends React.Component {

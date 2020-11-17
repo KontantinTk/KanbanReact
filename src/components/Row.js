@@ -10,6 +10,10 @@ const RowWrapper = styled.div`
   height: 400px;
   font-size: 18px;
   background: white;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 10px;
 `;
 
 class Row extends React.Component {

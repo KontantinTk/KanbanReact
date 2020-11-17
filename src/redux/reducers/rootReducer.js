@@ -3,6 +3,25 @@ import { ActionTypes } from '../actions/crudActions';
 
 const defaultState = newData;
 
+const taskColors = [
+    // yellowish:
+    '#FFED70',
+    // redish:
+    '#F09072',
+    // pupleish:
+    '#CF96FF',
+    // blueish:
+    '#7DDBE8',
+    // greenish:
+    '#BEFF8A'
+];
+
+const getRandomColor = () => {
+    const randomIndex = Math.round(Math.random() * taskColors.length);
+    console.log(randomIndex);
+    return taskColors[randomIndex];
+}
+
 const rootReducer = (state = defaultState, action) => {
     let column = undefined;
     let task = undefined;
@@ -19,7 +38,8 @@ const rootReducer = (state = defaultState, action) => {
                     [action.task]: {
                         column: action.column,
                         title: action.title,
-                        text: action.text
+                        text: action.text,
+                        color: getRandomColor()
                     }
                 },
                 columns: {

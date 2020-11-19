@@ -4,17 +4,10 @@ import { connect } from "react-redux";
 import { DragDropContext } from "react-beautiful-dnd";
 
 import Row from "./Row";
-import styled from "styled-components";
 
 import { moveTask } from '../redux/actions/crudActions';
 
-const KanbanWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-
-class Kanban extends React.Component {
+class Board extends React.Component {
 
   getRowIdByColumnId = columnId => {
     for (let rowId in this.state.rows) {
@@ -49,7 +42,7 @@ class Kanban extends React.Component {
       <DragDropContext
         onDragEnd={this.onDragEnd}
       >
-        <KanbanWrapper>
+        <div className="board-wrapper">
           {this.props.rowsOrder.map((rowId, index) => {
             const titled = index === 0;
             return (
@@ -61,7 +54,7 @@ class Kanban extends React.Component {
               />
             );
           })}
-        </KanbanWrapper>
+        </div>
       </DragDropContext >
     );
   }
@@ -69,4 +62,4 @@ class Kanban extends React.Component {
 
 const mapStoreToProps = (state) => (state);
 
-export default connect(mapStoreToProps)(Kanban);
+export default connect(mapStoreToProps)(Board);

@@ -26,9 +26,6 @@ const newData = {
         'row_0':{
             columnsOrder: ['column_00', 'column_01', 'column_02', 'column_03']
         },
-        'row_1':{
-            columnsOrder: ['column_10', 'column_11', 'column_12', 'column_13']
-        },
     },
     columns: {
         'column_00': {
@@ -44,22 +41,6 @@ const newData = {
             tasksOrder: []
         },
         'column_03': {
-            row: 'row_0',
-            tasksOrder: []
-        },
-        'column_10': {
-            row: 'row_0',
-            tasksOrder: []
-        },
-        'column_11': {
-            row: 'row_0',
-            tasksOrder: ['task_2', 'task_3', 'task_4']
-        },
-        'column_12': {
-            row: 'row_0',
-            tasksOrder: []
-        },
-        'column_13': {
             row: 'row_0',
             tasksOrder: []
         },
@@ -96,7 +77,7 @@ const newData = {
             color: getRandomColor()
         },
     },
-    rowsOrder: ['row_0', 'row_1']
+    rowsOrder: ['row_0',]
 }
 
 export default newData;

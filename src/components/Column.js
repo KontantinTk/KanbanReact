@@ -13,7 +13,7 @@ import TaskAddForm from './TaskAddForm';
 
 const ColumnDroppableArea = styled.div`
   overflow-y: visible;
-  height: 100%;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-content: flex-start;

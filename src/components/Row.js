@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 const RowWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  height: 400px;
   font-size: 18px;
   background: white;
   border: 1px solid black;

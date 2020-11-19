@@ -108,6 +108,28 @@ const rootReducer = (state = defaultState, action) => {
                     [task]: undefined
                 }
             }
+        case ActionTypes.ADD_COLUMN:
+            if (state.tasks[action.task]) return state;
+
+            let randInt = Math.round(1000 * Math.random());
+            let columnId = 'column_' + randInt;
+
+
+            return {
+                ...state,
+                columns: {
+                    ...state.columns,
+                    [columnId]: {
+                        row: 'row_0',
+                        tasksOrder: []
+                    }
+                },
+                rows: {
+                    'row_0': {
+                        columnsOrder: [...state.rows['row_0'].columnsOrder, columnId]
+                    }
+                }
+            }
         default:
             return state;
     }

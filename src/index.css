@@ -12,20 +12,6 @@
     border-radius: 10px;
 }
 
-.column-droppable-area {
-    overflow-y: visible;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    align-content: flex-start;
-}
-
-.column-wrapper {
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-}
-
 .row-wrapper {
     display: flex;
     flex-direction: row;
@@ -35,10 +21,25 @@
     margin-bottom: 10px;
     border-radius: 10px;
     padding: 10px;
+
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.column-wrapper {
+    flex: 0 0 auto;
+    width: 250px;
+    height: 100%;
+}
+
+.column-droppable-area {
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    overflow: scroll;
 }
 
 .board-wrapper {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+
 }

@@ -1,7 +1,9 @@
 enum ActionTypes {
     ADD_TASK = 'ADD_TASK',
     DEL_TASK = 'DEL_TASK',
-    MOVE_TASK = 'MOVE_TASK'
+    MOVE_TASK = 'MOVE_TASK',
+
+    ADD_COLUMN = 'ADD_COLUMN'
 }
 
 interface AddTaskData {
@@ -19,6 +21,10 @@ interface MoveTaskData {
 
 interface DelTaskData {
     task: string,
+}
+
+interface AddColumnData {
+
 }
 
 interface Action {
@@ -51,5 +57,12 @@ const delTask = (data: DelTaskData): DelTaskData & Action => {
     }
 }
 
+const addColumn = (data: AddColumnData): AddColumnData & Action => {
+    return {
+        type: ActionTypes.ADD_COLUMN,
+    }
+}
+
+
 export { ActionTypes };
-export { addTask, moveTask, delTask };
+export { addTask, moveTask, delTask, addColumn };
